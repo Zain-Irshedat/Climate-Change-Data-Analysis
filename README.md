@@ -1,6 +1,6 @@
 # Climate-Change-Data-Analysis
 Time-series analysis of global land and ocean temperatures using Python
-# 🌍 Climate Change - Global Temperature Data Analysis
+# 🌍 Climate Change & Global Temperature Data Analysis
 
 <div align="center">
 
@@ -13,68 +13,61 @@ Time-series analysis of global land and ocean temperatures using Python
 
 ---
 
-## 👨‍🎓 Project Information
-* **Course:** Programming for Data Science and AI[span_0](start_span)[span_0](end_span)
-* **Instructor:** Dr. Belal Alifan[span_1](start_span)[span_1](end_span)
-* **Student Name:** Zain Irshedat[span_2](start_span)[span_2](end_span)
-* **Project Type:** Climate Change Indicators Analysis[span_3](start_span)[span_3](end_span)
+## 📌 Project Overview
+This project presents a comprehensive time-series and exploratory data analysis (EDA) of global climate indicators. By leveraging Python data science libraries, the project investigates historical land and ocean temperature anomalies, cross-variable correlations, and regional warming trends spanning from 1750 to 2015.
 
 ---
 
-## 🎯 Project Objectives
-* Analyze real-world climate datasets using Python[span_4](start_span)[span_4](end_span).
-* Perform a time-series trend analysis of global land and ocean temperatures (1750–2015)[span_5](start_span)[span_5](end_span).
-* Explore geographical patterns, regional variations, and city-level temperature extremes[span_6](start_span)[span_6](end_span).
-* Generate rich data visualizations to support climate awareness[span_7](start_span)[span_7](end_span).
-* Practice professional data cleaning, feature extraction, and exploratory data analysis (EDA) techniques[span_8](start_span)[span_8](end_span).
+## 📊 Datasets & Schema
+The analysis utilizes multiple datasets from the Climate Change Indicators repository:
+* `GlobalTemperatures.csv` (Global land and ocean temperature records)
+* `GlobalLandTemperaturesByCity.csv` & `GlobalLandTemperaturesByMajorCity.csv` (Urban temperature metrics)
+* `GlobalLandTemperaturesByCountry.csv` & `GlobalLandTemperaturesByState.csv` (Geographical tracking)
+
+**Primary Features:** `dt` (Timestamp), `AverageTemperature`, `LandMaxTemperature`, `LandMinTemperature`, `LandAndOceanAverageTemperature`, alongside geographical metadata (`Country`, `City`).
 
 ---
 
-## 📁 Dataset Description
-The analysis is based on the **Kaggle Climate Change Indicators Dataset**[span_9](start_span)[span_9](end_span). The following files were utilized:
-* `GlobalTemperatures.csv`[span_10](start_span)[span_10](end_span)
-* `GlobalLandTemperaturesByCity.csv`[span_11](start_span)[span_11](end_span)
-* `GlobalLandTemperaturesByCountry.csv`[span_12](start_span)[span_12](end_span)
-* `GlobalLandTemperaturesByMajorCity.csv`[span_13](start_span)[span_13](end_span)
-* `GlobalLandTemperaturesByState.csv`[span_14](start_span)[span_14](end_span)
-
-**Key Columns Analyzed:** `dt` (Date), `AverageTemperature`, `Country`, `City`, `LandMaxTemperature`, `LandMinTemperature`, `LandAndOceanAverageTemperature`.
+## 🛠️ Tech Stack & Dependencies
+* **Data Processing:** `pandas`, `numpy`
+* **Statistical Modeling:** `scipy.stats` (Linear Regression & Trend slopes)
+* **Data Visualization:** `matplotlib`, `seaborn`, `plotly`
 
 ---
 
-## 🛠️ Tech Stack & Libraries Used
-* **`pandas` & `numpy`:** Data cleaning, grouping, statistical calculations, and correlation matrices[span_15](start_span)[span_15](end_span).
-* **`matplotlib` & `seaborn`:** Advanced plotting (Line charts, Bar charts, Boxplots, and Correlation Heatmaps)[span_16](start_span)[span_16](end_span).
-* **`scipy.stats` (Linear Regression):** Calculating temperature trend slopes over time[span_17](start_span)[span_17](end_span).
-* **`plotly`:** Interactive global choropleth heatmaps.
+## ⚙️ Data Preprocessing & Pipeline
+1. **Type Casting:** Converted raw date strings (`dt`) into standardized `datetime64` structures for precise temporal slicing.
+2. **Data Hygiene:** Handled missing values (`dropna`) and validated data uniqueness to prevent analytical skew.
+3. **Feature Engineering:** Extracted isolated **Year** and **Month** parameters from timestamps to enable seasonal aggregation.
+4. **Filtering & Normalization:** Filtered analytical slices for modern timelines (1900+) and removed geographical anomalies (such as Antarctica) to maintain mapping integrity.
 
 ---
 
-## 🧹 Data Cleaning & Preprocessing
-* Converted raw date columns (`dt`) into standardized `datetime` objects[span_18](start_span)[span_18](end_span).
-* Handled and dropped missing values (`dropna`) and checked for duplicate rows[span_19](start_span)[span_19](end_span).
-* Extracted **Year** and **Month** features for temporal grouping.
-* Filtered time-series data (focusing from 1900+ and specific historical ranges) and removed anomalies (e.g., Antarctica) for precise global mapping[span_20](start_span)[span_20](end_span).
+## 📈 Key Analytical Findings & Visualizations
+
+### 1. Global Temperature Time-Series Trend
+* **Analysis:** Aggregated historical yearly data to trace the global average land temperature trajectory.
+* **Insight:** Displays a sharp, continuous upward acceleration in global temperatures, particularly noticeable post-1900 through 2015.
+
+### 2. Cross-Variable Correlation Matrix
+* **Analysis:** Constructed Pearson correlation heatmaps mapping relationships between `LandAverage`, `LandMax`, `LandMin`, and `LandAndOcean` temperatures.
+* **Insight:** Revealed an extremely strong positive correlation ($\ge 0.98$) across all thermal dimensions, confirming that baseline shifts drive uniform escalations in both peak and minimum boundaries.
+
+### 3. Country-Level Warming Rates (Linear Regression Slope)
+* **Analysis:** Applied linear regression per country over the 1960–2015 period to calculate the mathematical rate of change ($\text{°C}$ per year).
+* **Insight:** Identified regions experiencing the steepest thermal shifts (e.g., Mongolia, Kazakhstan, Turkmenistan, and Uzbekistan).
+
+### 4. Urban Heat Concentration (Hottest Cities)
+* **Analysis:** Evaluated post-2000 city datasets to isolate extreme urban temperature averages.
+* **Insight:** Highlighted severe thermal concentration heavily localized in equatorial belts, North/Central Africa, and parts of the Middle East and Gulf region.
+
+### 5. Seasonal Variability & Distribution
+* **Analysis:** Mapped monthly boxplot distributions spanning a 100-year window (1900–2000).
+* **Insight:** Demonstrated that summer months exhibit significantly higher internal variance and volatility compared to structurally stable winter baselines.
 
 ---
 
-## 📊 Key Findings & Insights
-1. **Global Temperature Trends:** Time-series visualization demonstrates a clear, continuous upward trend in global average land temperatures, particularly accelerating from the 1900s to 2015[span_21](start_span)[span_21](end_span).
-2. **Correlation Analysis:** Built robust correlation heatmaps across `LandAverage`, `LandMax`, `LandMin`, and `Ocean` variables, revealing extremely high positive correlations ($\ge 0.98$), proving that global warming drives concurrent rises in peak and baseline temperatures[span_22](start_span)[span_22](end_span).
-3. **Warming Rates (Slope Analysis):** Applied linear regression per country to find the steepest warming rates (1960–2015), highlighting regions like Mongolia, Kazakhstan, Turkmenistan, and Uzbekistan[span_23](start_span)[span_23](end_span).
-4. **Hottest Urban Zones:** Evaluated city-level data post-2000, revealing extreme urban heat concentration in regions across Africa, the Middle East, and the Gulf (e.g., Djibouti, Khartoum, and surrounding areas)[span_24](start_span)[span_24](end_span).
-5. **Seasonal Variability:** Monthly distribution boxplots (1900–2000) show that summer months experience significantly wider temperature variances, whereas winter months remain stable[span_25](start_span)[span_25](end_span).
-
----
-
-## 💡 Recommendations & Future Work
-* **Predictive Modeling:** Monitor countries with the steepest warming slopes using advanced machine learning models[span_26](start_span)[span_26](end_span).
-* **Policy Integration:** Utilize temperature trend metrics to inform national climate change strategies[span_27](start_span)[span_27](end_span).
-* **Scope Expansion:** Integrate external indicators like $\text{CO}_2$ emissions, sea-level changes, and population density[span_28](start_span)[span_28](end_span).
-
----
-
-## 🚀 Getting Started & Installation
+## 🚀 Getting Started & Execution
 
 1. **Clone the repository:**
    ```bash
